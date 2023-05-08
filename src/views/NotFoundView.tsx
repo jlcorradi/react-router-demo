@@ -11,4 +11,4 @@ function NotFoundView() {
   );
 }
 
-export default { NotFoundView };
+export { NotFoundView };
