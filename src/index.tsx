@@ -19,6 +19,7 @@ import { AdminView } from "./views/AdminView";
 import { SettingsView } from "./views/SettingsView";
 import { ErrorElement } from "./components/ErrorElement";
 import { NotFoundView } from "./views/NotFoundView";
+import { PublicLayout } from "./PublicLayout";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -29,10 +30,12 @@ root.render(
     <AuthContextProvider>
       <Router>
         <Routes>
-          <Route path="login" element={<LoginView />} />
-          <Route path="register" element={<RegisterView />} />
-          <Route path="recover" element={<RecoverPassword />} />
-          <Route path="unauthorized" element={<UnauthorizedView />} />
+          <Route element={<PublicLayout />}>
+            <Route path="login" element={<LoginView />} />
+            <Route path="register" element={<RegisterView />} />
+            <Route path="recover" element={<RecoverPassword />} />
+            <Route path="unauthorized" element={<UnauthorizedView />} />
+          </Route>
 
           <Route element={<RequireAuth allowedRoles={["USER"]} />}>
             <Route path="/" element={<Navigate to={"/dashboard"} />} />
